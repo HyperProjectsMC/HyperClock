@@ -5,3 +5,15 @@ api-version: '1.21'
 authors: [ Timor ]
 description: A simple stopwatch and timer for minecraft with placeholders from the placeholderapi
 website: https://hyrenoss.nl
+
+softdepend: ["PlaceholderAPI"]
+
+commands:
+  stopwatch:
+    description: Stopwatch command
+    usage: /stopwatch <start|stop|reset|status>
+
+permissions:
+  hyperclock.stopwatch.use:
+    description: Allows use of HyperClock stopwatch
+    default: op
