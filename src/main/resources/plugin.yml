@@ -1,0 +1,7 @@
+name: HyperClock
+version: '1.0.0'
+main: org.hyperprojects.hyperclock.HyperClock
+api-version: '1.21'
+authors: [ Timor ]
+description: A simple stopwatch and timer for minecraft with placeholders from the placeholderapi
+website: https://hyrenoss.nl
