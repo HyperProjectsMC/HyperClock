@@ -6,9 +6,13 @@ import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.Objects;
+
+@SuppressWarnings("unused")
 public class HyperClock extends JavaPlugin {
 
     private static HyperClock instance;
+    @SuppressWarnings("FieldCanBeLocal")
     private StopwatchManager stopwatchManager;
 
     @Override
@@ -16,7 +20,7 @@ public class HyperClock extends JavaPlugin {
         instance = this;
         stopwatchManager = new StopwatchManager();
 
-        getCommand("stopwatch").setExecutor(new StopwatchCommand(stopwatchManager));
+        Objects.requireNonNull(getCommand("stopwatch")).setExecutor(new StopwatchCommand(stopwatchManager));
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
