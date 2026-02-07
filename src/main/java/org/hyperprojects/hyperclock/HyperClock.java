@@ -1,11 +1,10 @@
 package org.hyperprojects.hyperclock;
 
-import org.hyperprojects.hyperclock.command.StopwatchCommand;
-import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Objects;
+import org.hyperprojects.hyperclock.command.CommandManager;
+import org.hyperprojects.hyperclock.command.StopwatchCommand;
+import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 
 @SuppressWarnings("unused")
 public class HyperClock extends JavaPlugin {
@@ -19,10 +18,11 @@ public class HyperClock extends JavaPlugin {
         instance = this;
         stopwatchManager = new StopwatchManager();
 
+        CommandManager commandManager = new CommandManager(this);
+
         StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager);
 
-        Objects.requireNonNull(getCommand("stopwatch")).setExecutor(stopwatchCommand);
-        Objects.requireNonNull(getCommand("stopwatch")).setTabCompleter(stopwatchCommand);
+        commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
