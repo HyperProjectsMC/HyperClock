@@ -1,6 +1,5 @@
 package org.hyperprojects.hyperclock;
 
-
 import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 import org.bukkit.Bukkit;
@@ -20,12 +19,17 @@ public class HyperClock extends JavaPlugin {
         instance = this;
         stopwatchManager = new StopwatchManager();
 
-        Objects.requireNonNull(getCommand("stopwatch")).setExecutor(new StopwatchCommand(stopwatchManager));
+        StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager);
+
+        Objects.requireNonNull(getCommand("stopwatch")).setExecutor(stopwatchCommand);
+        Objects.requireNonNull(getCommand("stopwatch")).setTabCompleter(stopwatchCommand);
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new HyperClockExpansion(stopwatchManager).register();
             getLogger().info("PlaceholderAPI detected, placeholders enabled.");
+        } else {
+            getLogger().info("PlaceholderAPI not detected, placeholders disabled.");
         }
 
         getLogger().info("HyperClock enabled successfully");

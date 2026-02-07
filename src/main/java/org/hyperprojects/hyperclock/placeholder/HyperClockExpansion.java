@@ -31,11 +31,11 @@ public class HyperClockExpansion extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player player, @NotNull String params) {
 
-        if (params.equalsIgnoreCase("time")) {
+        if (params.equalsIgnoreCase("stopwatch_time")) {
             return stopwatch.getFormattedTime();
         }
 
-        if (params.equalsIgnoreCase("running")) {
+        if (params.equalsIgnoreCase("stopwatch_running")) {
             return String.valueOf(stopwatch.isRunning());
         }
 

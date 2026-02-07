@@ -1,12 +1,17 @@
 package org.hyperprojects.hyperclock.command;
 
+import org.bukkit.command.TabCompleter;
 import org.hyperprojects.hyperclock.StopwatchManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.jspecify.annotations.NonNull;
 
-public class StopwatchCommand implements CommandExecutor {
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class StopwatchCommand implements CommandExecutor, TabCompleter {
 
     private final StopwatchManager stopwatch;
 
@@ -54,5 +59,26 @@ public class StopwatchCommand implements CommandExecutor {
         }
 
         return true;
+    }
+
+    @Override
+    public List<String> onTabComplete(
+            @NonNull CommandSender sender,
+            @NonNull Command command,
+            @NonNull String alias,
+            @NonNull String @NonNull [] args
+    ) {
+
+        if (!sender.hasPermission("hyperclock.stopwatch.use")) {
+            return Collections.emptyList();
+        }
+
+        if (args.length == 1) {
+            return Stream.of("start", "stop", "reset", "status")
+                    .filter(s -> s.startsWith(args[0].toLowerCase()))
+                    .toList();
+        }
+
+        return Collections.emptyList();
     }
 }
