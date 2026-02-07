@@ -13,12 +13,15 @@ public class HyperClock extends JavaPlugin {
     private static HyperClock instance;
     @SuppressWarnings("FieldCanBeLocal")
     private StopwatchManager stopwatchManager;
+    @SuppressWarnings("FieldCanBeLocal")
     private TimerManager timerManager;
 
     @Override
     public void onEnable() {
         instance = this;
+
         stopwatchManager = new StopwatchManager();
+        timerManager = new TimerManager();
 
         CommandManager commandManager = new CommandManager(this);
 
@@ -30,7 +33,7 @@ public class HyperClock extends JavaPlugin {
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            new HyperClockExpansion(stopwatchManager).register();
+            new HyperClockExpansion(stopwatchManager, timerManager).register();
             getLogger().info("PlaceholderAPI detected, placeholders enabled.");
         } else {
             getLogger().info("PlaceholderAPI not detected, placeholders disabled.");

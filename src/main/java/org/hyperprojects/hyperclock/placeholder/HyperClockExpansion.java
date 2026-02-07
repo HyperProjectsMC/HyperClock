@@ -2,15 +2,18 @@ package org.hyperprojects.hyperclock.placeholder;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.hyperprojects.hyperclock.StopwatchManager;
+import org.hyperprojects.hyperclock.TimerManager;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class HyperClockExpansion extends PlaceholderExpansion {
 
     private final StopwatchManager stopwatch;
+    private final TimerManager timer;
 
-    public HyperClockExpansion(StopwatchManager stopwatch) {
+    public HyperClockExpansion(StopwatchManager stopwatch, TimerManager timer) {
         this.stopwatch = stopwatch;
+        this.timer = timer;
     }
 
     @Override
@@ -37,6 +40,18 @@ public class HyperClockExpansion extends PlaceholderExpansion {
 
         if (params.equalsIgnoreCase("stopwatch_running")) {
             return String.valueOf(stopwatch.isRunning());
+        }
+
+        if (params.equalsIgnoreCase("timer_time")) {
+            return String.valueOf(timer.getFormattedTime());
+        }
+
+        if (params.equalsIgnoreCase("timer_running")) {
+            return String.valueOf(timer.isRunning());
+        }
+
+        if (params.equalsIgnoreCase("timer_finished")) {
+            return String.valueOf(timer.isFinished());
         }
 
         return null;
