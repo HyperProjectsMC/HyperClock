@@ -12,6 +12,9 @@ commands:
   stopwatch:
     description: Stopwatch command
     usage: /stopwatch <start|stop|reset|status>
+  timer:
+    description: Timer command
+    usage: /timer <start|stop|set|status>
 
 permissions:
   hyperclock.stopwatch.use:
