@@ -17,3 +17,6 @@ permissions:
   hyperclock.stopwatch.use:
     description: Allows use of HyperClock stopwatch
     default: op
+  hyperclock.timer.use:
+    description: Allows use of HyperClock timer
+    default: op
