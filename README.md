@@ -28,6 +28,64 @@
 5. Start (or restart) your server to activate the plugin and check the commands below.
 6. Enjoy an improved timing experience!
 
+## Commands
+
+HyperClock has two main commands:
+
+- /stopwatch → counts time up
+- /timer → counts time down
+
+Both commands have similar subcommands.
+
+<details>
+<summary>/stopwatch Command</summary>
+
+### `/stopwatch` Command
+The Stopwatch command counts up from 0.
+
+#### Subcommands:
+| Command             | Description                            | Permission                 |
+|---------------------|----------------------------------------|----------------------------|
+| `/stopwatch start`  | Starts the stopwatch                   | `hyperclock.stopwatch.use` |
+| `/stopwatch stop`   | Stops the stopwatch (can be restarted) | `hyperclock.stopwatch.use` |
+| `/stopwatch reset`  | Resets the stopwatch to 0              | `hyperclock.stopwatch.use` |
+| `/stopwatch status` | Shows the current status               | `hyperclock.stopwatch.use` |
+
+</details>
+
+<details>
+<summary>/timer Command</summary>
+
+### `/timer` Command
+
+The timer counts down from a selected time.
+
+#### Subcommands
+
+| Command             | Description               | Permission             |
+|---------------------|---------------------------|------------------------|
+| `/timer start`      | Starts the timer          | `hyperclock.timer.use` |
+| `/timer pause`      | Stops the timer           | `hyperclock.timer.use` |
+| `/timer set <time>` | Set the timer (5m, 1h30m) | `hyperclock.timer.use` |
+| `/timer status`     | Shows the current status  | `hyperclock.timer.use` |
+
+#### Time Notation
+- `30s` → 30 seconds
+- `5m` → 5 minutes
+- `1h` → 1 hour
+- `1h30m` → 1 hour 30 minutes
+- `2m45s` → 2 minutes 45 seconds
+- `4h15m20s` → 4 hours 15 minutes 20 seconds
+
+</details>
+
+## Permissions
+
+| Permission                 | Description                         |
+|----------------------------|-------------------------------------|
+| `hyperclock.stopwatch.use` | Full access to the stopwatch        |
+| `hyperclock.timer.use`     | Full access to the timer            |
+
 ## Credits
 
 - **HyperProjects:** This project is made by the HyperProjects team.
