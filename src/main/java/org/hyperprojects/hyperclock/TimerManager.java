@@ -38,12 +38,12 @@ public class TimerManager {
         long remaining = endTime - System.currentTimeMillis();
         if (remaining <= 0) {
             running = false;
+            durationMillis = 0;
             return 0;
         }
 
         return remaining;
     }
-
 
     public boolean isFinished() {
         return getRemainingMillis() == 0;
