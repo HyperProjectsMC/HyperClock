@@ -86,6 +86,31 @@ The timer counts down from a selected time.
 | `hyperclock.stopwatch.use` | Full access to the stopwatch        |
 | `hyperclock.timer.use`     | Full access to the timer            |
 
+## Placeholders
+
+This plugin uses the PlaceholderAPI to provide dynamic values. The PlaceholderAPI integration is fully integrated into the plugin and does not require separate installation.
+
+### Stopwatch Placeholders
+
+These placeholders provide information about the stopwatch.
+
+| Placeholder                      | Description                                          | Output                             |
+|----------------------------------|------------------------------------------------------|------------------------------------|
+| `%hyperclock_stopwatch_time%`    | Displays the current stopwatch time                  | `00:00:00` (hours:minutes:seconds) |
+| `%hyperclock_stopwatch_running%` | Indicates whether the stopwatch is currently running | `true` / `false`                   |
+
+### Timer Placeholders
+
+These placeholders provide information about the timer.
+
+| Placeholder                   | Description                                      | Output                             |
+|-------------------------------|--------------------------------------------------|------------------------------------|
+| `%hyperclock_timer_time%`     | Displays the current or remaining timer time     | `00:00:00` (hours:minutes:seconds) |
+| `%hyperclock_timer_running%`  | Indicates whether the timer is currently running | `true` / `false`                   |
+| `%hyperclock_timer_finished%` | Indicates whether the timer has finished         | `true` / `false`                   |
+
+These placeholders can be used in all plugins and configurations that support **PlaceholderAPI**, such as scoreboards, holograms, chat formatting and more.
+
 ## Credits
 
 - **HyperProjects:** This project is made by the HyperProjects team.
