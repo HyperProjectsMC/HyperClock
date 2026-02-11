@@ -5,7 +5,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.hyperprojects.hyperclock.command.CommandManager;
 import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.command.TimerCommand;
+import org.hyperprojects.hyperclock.listener.JoinListener;
 import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
+import org.hyperprojects.hyperclock.util.UpdateChecker;
 
 @SuppressWarnings("unused")
 public class HyperClock extends JavaPlugin {
@@ -15,6 +17,9 @@ public class HyperClock extends JavaPlugin {
     private StopwatchManager stopwatchManager;
     @SuppressWarnings("FieldCanBeLocal")
     private TimerManager timerManager;
+
+    @SuppressWarnings("FieldCanBeLocal")
+    private UpdateChecker updateChecker;
 
     @Override
     public void onEnable() {
@@ -30,6 +35,14 @@ public class HyperClock extends JavaPlugin {
 
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
         commandManager.register("timer", timerCommand, timerCommand);
+
+        updateChecker = new UpdateChecker(this, "HyperProjects/HyperClock");
+        updateChecker.check();
+
+        getServer().getPluginManager().registerEvents(
+                new JoinListener(updateChecker),
+                this
+        );
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
