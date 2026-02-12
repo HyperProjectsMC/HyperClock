@@ -2,10 +2,12 @@ package org.hyperprojects.hyperclock;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.hyperprojects.hyperclock.command.CommandManager;
 import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.command.TimerCommand;
 import org.hyperprojects.hyperclock.listener.JoinListener;
+import org.hyperprojects.hyperclock.manager.CommandManager;
+import org.hyperprojects.hyperclock.manager.StopwatchManager;
+import org.hyperprojects.hyperclock.manager.TimerManager;
 import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 import org.hyperprojects.hyperclock.util.UpdateChecker;
 

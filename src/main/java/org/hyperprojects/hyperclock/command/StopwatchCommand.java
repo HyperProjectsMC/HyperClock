@@ -1,7 +1,7 @@
 package org.hyperprojects.hyperclock.command;
 
 import org.bukkit.command.TabCompleter;
-import org.hyperprojects.hyperclock.StopwatchManager;
+import org.hyperprojects.hyperclock.manager.StopwatchManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

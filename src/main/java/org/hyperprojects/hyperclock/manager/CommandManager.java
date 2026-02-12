@@ -1,4 +1,4 @@
-package org.hyperprojects.hyperclock.command;
+package org.hyperprojects.hyperclock.manager;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;

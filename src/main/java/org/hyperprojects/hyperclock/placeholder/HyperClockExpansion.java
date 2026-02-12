@@ -1,8 +1,8 @@
 package org.hyperprojects.hyperclock.placeholder;
 
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.hyperprojects.hyperclock.StopwatchManager;
-import org.hyperprojects.hyperclock.TimerManager;
+import org.hyperprojects.hyperclock.manager.StopwatchManager;
+import org.hyperprojects.hyperclock.manager.TimerManager;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 

@@ -1,4 +1,4 @@
-package org.hyperprojects.hyperclock;
+package org.hyperprojects.hyperclock.manager;
 
 public class TimerManager {
 
