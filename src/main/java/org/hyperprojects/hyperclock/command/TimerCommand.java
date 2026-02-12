@@ -9,6 +9,8 @@ import org.jspecify.annotations.NonNull;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 public class TimerCommand implements CommandExecutor, TabCompleter {
@@ -20,24 +22,45 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
     }
 
     private long parseTimeToMillis(String input) {
-        input = input.toLowerCase();
-
-        try {
-            if (input.endsWith("h")) {
-                return Long.parseLong(input.replace("h", "")) * 60 * 60 * 1000;
-            }
-            if (input.endsWith("m")) {
-                return Long.parseLong(input.replace("m", "")) * 60 * 1000;
-            }
-            if (input.endsWith("s")) {
-                return Long.parseLong(input.replace("s", "")) * 1000;
-            }
-
-            return Long.parseLong(input) * 1000;
-
-        } catch (NumberFormatException e) {
+        if (input == null || input.isEmpty()) {
             return -1;
         }
+
+        input = input.toLowerCase();
+        long totalMillis = 0;
+
+        Pattern pattern = Pattern.compile("(\\d+)([hms])");
+        Matcher matcher = pattern.matcher(input);
+
+        int matches = 0;
+
+        while (matcher.find()) {
+            matches++;
+            long value = Long.parseLong(matcher.group(1));
+            String unit = matcher.group(2);
+
+            switch (unit) {
+                case "h":
+                    totalMillis += value * 60 * 60 * 1000;
+                    break;
+                case "m":
+                    totalMillis += value * 60 * 1000;
+                    break;
+                case "s":
+                    totalMillis += value * 1000;
+                    break;
+            }
+        }
+
+        if (matches == 0) {
+            try {
+                return Long.parseLong(input) * 1000;
+            } catch (NumberFormatException e) {
+                return -1;
+            }
+        }
+
+        return totalMillis;
     }
 
     @Override
