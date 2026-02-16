@@ -77,6 +77,7 @@ public class ConfigManager {
 
         } catch (Exception e) {
             e.printStackTrace();
+            plugin.getLogger().warning("An error occurred while creating the configuration files.");
         }
 
         // Laad daarna config.yml uit plugin root
@@ -91,6 +92,7 @@ public class ConfigManager {
             config.save(file);
         } catch (Exception ex) {
             ex.printStackTrace();
+            plugin.getLogger().warning("An error occurred while trying to save the configuration files");
         }
     }
 
@@ -98,5 +100,21 @@ public class ConfigManager {
     public void set(String path, Object value) {
         config.set(path, value);
         save();
+    }
+
+    public boolean getBoolean(String path) {
+        Object value = config.get(path);
+        if (value == null) {
+            return false;
+        }
+        return (Boolean) value;
+    }
+
+    public String getString(String path) {
+        Object value = config.get(path);
+        if (value == null) {
+            return null;
+        }
+        return (String) value;
     }
 }

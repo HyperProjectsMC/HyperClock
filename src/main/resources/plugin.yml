@@ -1,10 +1,10 @@
 name: HyperClock
 version: '1.0.0'
 main: org.hyperprojects.hyperclock.HyperClock
-api-version: '1.21'
-authors: [ Timor ]
 description: HyperClock is a Minecraft plugin that adds a global stopwatch and timer, controllable via commands, with PlaceholderAPI support.
+authors: [ Timor ]
 website: https://hyrenoss.nl
+api-version: '1.21'
 
 softdepend: ["PlaceholderAPI"]
 

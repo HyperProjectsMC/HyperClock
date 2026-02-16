@@ -37,7 +37,7 @@ public class UpdateChecker {
                 if (!latestVersion.equalsIgnoreCase(currentVersion)) {
                     updateAvailable = true;
 
-                    plugin.getLogger().warning("Update available: §c" + currentVersion + " §7→ §a" + latestVersion);
+                    plugin.getLogger().warning("Update available: " + currentVersion + " → " + latestVersion);
                 }
             } catch (Exception e) {
                 plugin.getLogger().warning("Couldn't check if there was a update.");

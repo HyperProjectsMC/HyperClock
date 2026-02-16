@@ -15,10 +15,11 @@ updates:
 
   # Who gets the  update notification?
   # Possible values:
+  # EVERYONE   -> Everyone will receive the notification.
   # OPS        -> Only server operators
   # PERMISSION -> Only players with the admin permission (hyperclock.admin)! This perm is also by default applied to OP's.
   # NONE       -> Nobody gets the notification except the console.
-  notify-type: OPS
+  notify-type: PERMISSION
 
 # ==========================================
 # Stopwatch Settings (Count Up)

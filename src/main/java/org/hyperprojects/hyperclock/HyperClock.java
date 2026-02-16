@@ -33,6 +33,8 @@ public class HyperClock extends JavaPlugin {
         stopwatchManager = new StopwatchManager();
         timerManager = new TimerManager();
 
+        configManager = new ConfigManager(this);
+        configManager.load();
 
         CommandManager commandManager = new CommandManager(this);
 
@@ -42,14 +44,13 @@ public class HyperClock extends JavaPlugin {
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
         commandManager.register("timer", timerCommand, timerCommand);
 
-        updateChecker = new UpdateChecker(this, "HyperProjects/HyperClock");
-        updateChecker.check();
-
-        configManager = new ConfigManager(this);
-        configManager.load();
+        if (configManager.getBoolean("updates.auto-update-check")) {
+            updateChecker = new UpdateChecker(this, "DiscordSRV/DiscordSRV");
+            updateChecker.check();
+        }
 
         getServer().getPluginManager().registerEvents(
-                new JoinListener(updateChecker),
+                new JoinListener(updateChecker, configManager),
                 this
         );
 
