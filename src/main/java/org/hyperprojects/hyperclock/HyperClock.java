@@ -23,6 +23,8 @@ public class HyperClock extends JavaPlugin {
 
     @SuppressWarnings("FieldCanBeLocal")
     private UpdateChecker updateChecker;
+    @SuppressWarnings("FieldCanBeLocal")
+    private ConfigManager configManager;
 
     @Override
     public void onEnable() {
@@ -30,6 +32,7 @@ public class HyperClock extends JavaPlugin {
 
         stopwatchManager = new StopwatchManager();
         timerManager = new TimerManager();
+
 
         CommandManager commandManager = new CommandManager(this);
 
@@ -42,12 +45,13 @@ public class HyperClock extends JavaPlugin {
         updateChecker = new UpdateChecker(this, "HyperProjects/HyperClock");
         updateChecker.check();
 
+        configManager = new ConfigManager(this);
+        configManager.load();
+
         getServer().getPluginManager().registerEvents(
                 new JoinListener(updateChecker),
                 this
         );
-
-        ConfigManager.getInstance().Load();
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
