@@ -6,6 +6,7 @@ import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.command.TimerCommand;
 import org.hyperprojects.hyperclock.listener.JoinListener;
 import org.hyperprojects.hyperclock.manager.CommandManager;
+import org.hyperprojects.hyperclock.manager.ConfigManager;
 import org.hyperprojects.hyperclock.manager.StopwatchManager;
 import org.hyperprojects.hyperclock.manager.TimerManager;
 import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
@@ -45,6 +46,8 @@ public class HyperClock extends JavaPlugin {
                 new JoinListener(updateChecker),
                 this
         );
+
+        ConfigManager.getInstance().Load();
 
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {

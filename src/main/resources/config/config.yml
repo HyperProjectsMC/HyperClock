@@ -1,0 +1,93 @@
+# ==========================================
+#  HyperClock Configuration
+#  Plugin Version: 1.0.0
+#  Config Version: 1.0.0
+# ==========================================
+
+# General settings
+general:
+  prefix: "&8[&bHyperClock&8] "
+  language: "en"
+
+# Update settings
+updates:
+  auto-update-check: true
+
+  # Who gets the  update notification?
+  # Possible values:
+  # OPS        -> Only server operators
+  # PERMISSION -> Only players with the admin permission (hyperclock.admin)! This perm is also by default applied to OP's.
+  # NONE       -> Nobody gets the notification except the console.
+  notify-type: OPS
+
+# ==========================================
+# Stopwatch Settings (Count Up)
+# ==========================================
+stopwatch:
+  enabled: true
+
+  # Should the stopwatch start automatically when the server starts?
+  auto-start: false
+
+  # Broadcast settings
+  # (The broadcast messages can be edited inside the lang file of your choice)
+  broadcast:
+    on-start: true
+    on-stop: true
+    on-reset: false
+
+# ==========================================
+# Timer Settings (Count Down)
+# ==========================================
+timer:
+  enabled: true
+
+  # Default time. You van manually set your time using the /timer set command.
+  default-time: "5m"
+
+  # Broadcast settings
+  # (The broadcast messages can be edited inside the lang file of your choice.)
+  # (The on finish broadcast can be toggled inside the on-finish block below.)
+  broadcast:
+    on-start: true
+    on-stop: true
+    on-set: false
+
+  # What will happen if the timer finishes.
+  # (The broadcast message can be edited inside the lang file of your choice.)
+  on-finish:
+    broadcast: true
+    play-sound: true
+    sound: "ENTITY_PLAYER_LEVELUP"
+    execute-commands:
+      - "give @a apple 1"
+
+# ==========================================
+# Storage
+# ==========================================
+storage:
+  # Where will the information be stored?
+  # Possible values:
+  # MEMORY     -> Stores data in RAM. Fast and simple, but lost after restart.
+  # FILE       -> Stores data on disk. Persistent after restart.
+
+  type: "MEMORY"
+  save-interval-seconds: 60
+  file-name: "data.yml"
+
+# ==========================================
+# Messages
+# ==========================================.
+
+# You can edit the messages in the files inside the lang folder, and you must set the correct language at the top of the config file.
+messages:
+  no-permission: "&cYou do not have permission to use this command."
+  timer-not-running: "&cThe timer is not running."
+  stopwatch-not-running: "&cThe stopwatch is not running."
+  invalid-time-format: "&cInvalid time format! Example: 5m, 1h30m"
+  timer-set: "&aTimer set to &f%hyperclock_timer_time%"
+  timer-started: "&aTimer started!"
+  timer-paused: "&eTimer paused."
+  stopwatch-started: "&aStopwatch started!"
+  stopwatch-stopped: "&eStopwatch stopped."
+  stopwatch-reset: "&cStopwatch reset."
