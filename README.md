@@ -111,6 +111,16 @@ These placeholders provide information about the timer.
 
 These placeholders can be used in all plugins and configurations that support **PlaceholderAPI**, such as scoreboards, holograms, chat formatting and more.
 
+## Configuration
+
+HyperClock offers a wide range of configurable options to tailor the behavior to your specific needs. You can easily customize settings such as auto start, default time, storage method, and much more. Additionally, HyperClock supports multiple languages, with Dutch and English available by default. You can create your own language files by adding them to the `/lang` folder.
+
+To select your preferred language, simply adjust the `general.language` setting in the `config.yml` file.
+
+For a complete view of our `config.yml` file, please refer to the current config file down below. Feel free to explore and tweak the settings according to your preferences.
+
+You can check the full config [here](https://raw.githubusercontent.com/HyperProjectsMC/HyperClock/refs/heads/main/src/main/resources/config/config.yml) on GitHub.
+
 ## Credits
 
 - **HyperProjects:** This project is made by the HyperProjects team.
