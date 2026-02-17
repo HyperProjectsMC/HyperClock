@@ -8,8 +8,8 @@
   "stopwatch-status": "§7Status:\n§bStopwatch time: §f{time}\n§7Running: §f{status}",
   "stopwatch-disabled": "§cThe stopwatch is disabled in the config.",
 
-  "timer-started": "§aTimer started!",
+  "timer-started": "§aTimer started.",
   "timer-stopped": "§eTimer paused.",
-  "timer-set": "§aTimer set to &f%hyperclock_timer_time%",
+  "timer-set": "§aTimer set to &f{time}",
   "invalid-time-format": "§cInvalid time format! Example: 5m, 1h30m"
 }

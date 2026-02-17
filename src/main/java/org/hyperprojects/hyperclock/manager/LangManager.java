@@ -21,7 +21,7 @@ public class LangManager {
 
     @SuppressWarnings("all")
     public void load() {
-        String lang = configManager.getString("lang");
+        String lang = configManager.getString("general.language");
         if (lang == null || lang.isEmpty()) {
             lang = "en";
         }
