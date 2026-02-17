@@ -6,7 +6,7 @@
 
 # General settings
 general:
-  prefix: "§8[§bHyperClock§8] " # Remember to keep the last space to make sure there is room between your prefix and message.
+  prefix: "§9§l[Hyper§d§lClock] §7| " # Remember to keep the last space to make sure there is room between your prefix and message.
   language: "en"
 
 # Update settings

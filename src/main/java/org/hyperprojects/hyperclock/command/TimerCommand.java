@@ -98,7 +98,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                 messageUsage = "§7Usage: {commandUsage}";
             }
 
-            String commandUsage = "/stopwatch <start|stop|reset|status>";
+            String commandUsage = "/timer <start|stop|set|status>";
 
             messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
 
@@ -204,18 +204,11 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                     messageUsage = "§7Usage: {commandUsage}";
                 }
 
-                String commandUsage = "/timer set <time>";
+                String commandUsage = "/timer <start|stop|set|status>";
 
                 messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
 
-                String messageSetExamples = langManager.getString("timer-set-examples");
-                if (messageSetExamples == null || messageSetExamples.isEmpty()) {
-                    messageSetExamples = "§7Examples: 30s, 5m, 1h";
-                }
-
-                String messageSetUsage = messageUsage + "\n" + messageSetExamples;
-
-                sender.sendMessage(messageSetUsage);
+                sender.sendMessage(messageUsage);
                 break;
         }
 
