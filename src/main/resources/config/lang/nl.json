@@ -11,5 +11,6 @@
   "timer-started": "§aTimer gestart.",
   "timer-stopped": "§eTimer gepauzeerd.",
   "timer-set": "§aTimer ingesteld op &f{time}",
+  "timer-disabled": "§cDe timer is uitgeschakeld in de configuratie.",
   "invalid-time-format": "§cOngeldig tijdsformaat! Voorbeeld: 5m, 1h30m"
 }

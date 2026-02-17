@@ -35,7 +35,6 @@ public class StopwatchCommand implements CommandExecutor, TabCompleter {
             }
 
             sender.sendMessage(messageDisabled);
-
             return true;
         }
 
@@ -100,7 +99,7 @@ public class StopwatchCommand implements CommandExecutor, TabCompleter {
             case "status":
                 String messageStatus = langManager.getString("stopwatch-status");
                 if (messageStatus == null || messageStatus.isEmpty()) {
-                    messageStatus = "§bStopwatch time: §f{time}\n§7Running: {status}";
+                    messageStatus = "§7Status:\n§bStopwatch time: §f{time}\n§7Running: §f{status}";
                 }
 
                 String time = stopwatch.getFormattedTime();

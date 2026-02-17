@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.hyperprojects.hyperclock.manager.ConfigManager;
+import org.hyperprojects.hyperclock.manager.LangManager;
 import org.hyperprojects.hyperclock.manager.TimerManager;
 import org.jspecify.annotations.NonNull;
 
@@ -18,10 +19,12 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
 
     private final TimerManager timer;
     private final ConfigManager configManager;
+    private final LangManager langManager;
 
-    public TimerCommand(TimerManager timer, ConfigManager configManager) {
+    public TimerCommand(TimerManager timer, ConfigManager configManager, LangManager langManager) {
         this.timer = timer;
         this.configManager = configManager;
+        this.langManager = langManager;
     }
 
     private long parseTimeToMillis(String input) {
@@ -70,56 +73,149 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
 
         if (!configManager.getBoolean("timer.enabled")) {
-            sender.sendMessage("§cThe timer is disabled in the config.");
+            String messageDisabled = langManager.getString("timer-disabled");
+            if (messageDisabled == null || messageDisabled.isEmpty()) {
+                messageDisabled = "§cThe timer is disabled in the config.";
+            }
+
+            sender.sendMessage(messageDisabled);
             return true;
         }
 
         if (!sender.hasPermission("hyperclock.timer.use")) {
-            sender.sendMessage("§cYou do not have permission to use this command.");
+            String messagePerm = langManager.getString("no-permission");
+            if (messagePerm == null || messagePerm.isEmpty()) {
+                messagePerm = "§cYou do not have permission to use this command.";
+            }
+
+            sender.sendMessage(messagePerm);
             return true;
         }
 
         if (args.length == 0) {
-            sender.sendMessage("§7Usage: /timer <start|stop|set|status>");
+            String messageUsage = langManager.getString("usage");
+            if (messageUsage == null || messageUsage.isEmpty()) {
+                messageUsage = "§7Usage: {commandUsage}";
+            }
+
+            String commandUsage = "/stopwatch <start|stop|reset|status>";
+
+            messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
+
+            sender.sendMessage(messageUsage);
             return true;
         }
 
         switch (args[0].toLowerCase()) {
             case "start":
                 timer.start();
-                sender.sendMessage("§aTimer started.");
+
+                String messageStart = langManager.getString("timer-started");
+                if (messageStart == null || messageStart.isEmpty()) {
+                    messageStart = "§aTimer started.";
+                }
+
+                sender.sendMessage(messageStart);
                 break;
 
             case "stop":
                 timer.stop();
-                sender.sendMessage("§cTimer stopped.");
+                String messageStop = langManager.getString("timer-stopped");
+                if (messageStop == null || messageStop.isEmpty()) {
+                    messageStop = "§eTimer stopped.";
+                }
+
+                sender.sendMessage(messageStop);
                 break;
 
             case "set":
                 if (args.length < 2) {
-                    sender.sendMessage("§cUsage: /timer set <time>");
-                    sender.sendMessage("§7Examples: 30s, 5m, 1h");
+                    String messageUsage = langManager.getString("usage");
+                    if (messageUsage == null || messageUsage.isEmpty()) {
+                        messageUsage = "§7Usage: {commandUsage}";
+                    }
+
+                    String commandUsage = "/timer set <time>";
+
+                    messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
+
+                    String messageSetExamples = langManager.getString("timer-set-examples");
+                    if (messageSetExamples == null || messageSetExamples.isEmpty()) {
+                        messageSetExamples = "§7Examples: 30s, 5m, 1h";
+                    }
+
+                    String messageSetUsage = messageUsage + "\n" + messageSetExamples;
+
+                    sender.sendMessage(messageSetUsage);
                     break;
                 }
 
                 long millis = parseTimeToMillis(args[1]);
                 if (millis <= 0) {
-                    sender.sendMessage("§cInvalid time format.");
+                    String messageSetInvalid = langManager.getString("timer-set-invalid");
+                    if (messageSetInvalid == null || messageSetInvalid.isEmpty()) {
+                        messageSetInvalid = "§cInvalid time format.";
+                    }
+
+                    String messageSetExamples = langManager.getString("timer-set-examples");
+                    if (messageSetExamples == null || messageSetExamples.isEmpty()) {
+                        messageSetExamples = "§7Examples: 30s, 5m, 1h";
+                    }
+
+                    String messageSetInvalidExample = messageSetInvalid + "\n" + messageSetExamples;
+
+                    sender.sendMessage(messageSetInvalidExample);
                     break;
                 }
 
                 timer.set(millis);
-                sender.sendMessage("§eTimer set to §f" + timer.getFormattedTime());
+                String messageSet = langManager.getString("timer-set");
+                if (messageSet == null || messageSet.isEmpty()) {
+                    messageSet = "§eTimer set to &f{time}";
+                }
+
+                String time = timer.getFormattedTime();
+
+                messageSet = messageSet.replace("{time}", time);
+
+                sender.sendMessage(messageSet);
                 break;
 
             case "status":
-                sender.sendMessage("§bTimer time: §f" + timer.getFormattedTime());
-                sender.sendMessage("§7Running: " + timer.isRunning());
-                sender.sendMessage("§7Finished: " + timer.isFinished());
+                String messageStatus = langManager.getString("timer-status");
+                if (messageStatus == null || messageStatus.isEmpty()) {
+                    messageStatus = "§7Status:\n§bTimer time: §f{time}\n§7Running: §f{status}\n§7Finished: §f{finished}";
+                }
+
+                String time2 = timer.getFormattedTime();
+                String status = String.valueOf(timer.isRunning());
+                String finished = String.valueOf(timer.isFinished());
+
+                messageStatus = messageStatus.replace("{time}", time2);
+                messageStatus = messageStatus.replace("{status}", status);
+                messageStatus = messageStatus.replace("{finished}", finished);
+
+                sender.sendMessage(messageStatus);
                 break;
 
             default:
-                sender.sendMessage("§7Usage: /timer <start|stop|set|status>");
+                String messageUsage = langManager.getString("usage");
+                if (messageUsage == null || messageUsage.isEmpty()) {
+                    messageUsage = "§7Usage: {commandUsage}";
+                }
+
+                String commandUsage = "/timer set <time>";
+
+                messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
+
+                String messageSetExamples = langManager.getString("timer-set-examples");
+                if (messageSetExamples == null || messageSetExamples.isEmpty()) {
+                    messageSetExamples = "§7Examples: 30s, 5m, 1h";
+                }
+
+                String messageSetUsage = messageUsage + "\n" + messageSetExamples;
+
+                sender.sendMessage(messageSetUsage);
                 break;
         }
 

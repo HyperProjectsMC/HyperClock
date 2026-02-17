@@ -42,7 +42,7 @@ public class HyperClock extends JavaPlugin {
         CommandManager commandManager = new CommandManager(this);
 
         StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager, configManager, langManager);
-        TimerCommand timerCommand = new TimerCommand(timerManager, configManager);
+        TimerCommand timerCommand = new TimerCommand(timerManager, configManager, langManager);
 
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
         commandManager.register("timer", timerCommand, timerCommand);

@@ -9,7 +9,10 @@
   "stopwatch-disabled": "§cThe stopwatch is disabled in the config.",
 
   "timer-started": "§aTimer started.",
-  "timer-stopped": "§eTimer paused.",
-  "timer-set": "§aTimer set to &f{time}",
-  "invalid-time-format": "§cInvalid time format! Example: 5m, 1h30m"
+  "timer-stopped": "§cTimer stopped.",
+  "timer-set": "§eTimer set to &f{time}",
+  "timer-set-examples": "§7Examples: 30s, 5m, 1h",
+  "timer-set-invalid": "§cInvalid time format.",
+  "timer-status": "§7Status:\n§bTimer time: §f{time}\n§7Running: §f{status}\n§7Finished: §f{finished}",
+  "timer-disabled": "§cThe timer is disabled in the config."
 }
