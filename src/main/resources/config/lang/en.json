@@ -1,6 +1,7 @@
 {
   "no-permission": "§cYou do not have permission to use this command.",
   "usage": "§7Usage: {commandUsage}",
+  "update-available": "§eUpdate available! §7Version: §c{version}",
 
   "stopwatch-started": "§aStopwatch started.",
   "stopwatch-stopped": "§cStopwatch stopped.",

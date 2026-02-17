@@ -65,7 +65,7 @@ public class HyperClock extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(
-                new JoinListener(updateChecker, configManager),
+                new JoinListener(updateChecker, configManager, langManager),
                 this
         );
 
