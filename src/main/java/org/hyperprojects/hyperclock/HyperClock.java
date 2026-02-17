@@ -40,7 +40,7 @@ public class HyperClock extends JavaPlugin {
         CommandManager commandManager = new CommandManager(this);
 
         StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager, configManager);
-        TimerCommand timerCommand = new TimerCommand(timerManager);
+        TimerCommand timerCommand = new TimerCommand(timerManager, configManager);
 
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
         commandManager.register("timer", timerCommand, timerCommand);
@@ -48,6 +48,18 @@ public class HyperClock extends JavaPlugin {
         if (configManager.getBoolean("updates.auto-update-check")) {
             updateChecker = new UpdateChecker(this, "DiscordSRV/DiscordSRV");
             updateChecker.check();
+        }
+
+        if (configManager.getBoolean("timer.enabled")) {
+            if (configManager.getString("timer.default-time") != null) {
+                boolean result = timerCommand.setDefaultTime();
+
+                if (result) {
+                    getLogger().info("Successfully set the timer to the default time.");
+                } else {
+                    getLogger().warning("Failed to set the timer to the default time.");
+                }
+            }
         }
 
         getServer().getPluginManager().registerEvents(
@@ -62,6 +74,16 @@ public class HyperClock extends JavaPlugin {
                 if (configManager.getBoolean("stopwatch.enabled") && configManager.getBoolean("stopwatch.auto-start")) {
                     stopwatchManager.autoStart();
                     getLogger().info("The stopwatch has started because auto start was enabled.");
+                }
+                if (configManager.getBoolean("timer.enabled") && configManager.getBoolean("timer.auto-start")) {
+                    String defaultTime = configManager.getString("timer.default-time");
+
+                    if (defaultTime == null || defaultTime.isEmpty()) {
+                        getLogger().warning("Unable to start the timer because there was no default time found.");
+                    }
+
+                    timerManager.autoStart();
+                    getLogger().info("The timer has started because auto start was enabled.");
                 }
             }
         }.runTask(this);

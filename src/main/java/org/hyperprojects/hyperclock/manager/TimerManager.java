@@ -26,6 +26,10 @@ public class TimerManager {
         }
     }
 
+    public void autoStart() {
+        start();
+    }
+
     public boolean isRunning() {
         return running;
     }

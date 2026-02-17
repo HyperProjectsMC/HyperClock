@@ -41,10 +41,17 @@ stopwatch:
 # Timer Settings (Count Down)
 # ==========================================
 timer:
-  enabled: true # NOT WORKING
+  enabled: true
 
   # Default time. You van manually set your time using the /timer set command.
-  default-time: "5m" # NOT WORKING
+  # Possible values:
+  # ("TIME")   -> Values like "1h", "1m" or "1s". You can also combine these: "1h1m1s".
+  # null       -> This will disable the feature. Make sure to remove the quotes (use null not "null").
+  default-time: "5m"
+
+  # Should the timer start automatically when the server starts?
+  # (This will only work if a default time has been set.)
+  auto-start: false
 
   # Broadcast settings
   # (The broadcast messages can be edited inside the lang file of your choice.)

@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.hyperprojects.hyperclock.manager.ConfigManager;
 import org.hyperprojects.hyperclock.manager.TimerManager;
 import org.jspecify.annotations.NonNull;
 
@@ -16,9 +17,11 @@ import java.util.stream.Stream;
 public class TimerCommand implements CommandExecutor, TabCompleter {
 
     private final TimerManager timer;
+    private final ConfigManager configManager;
 
-    public TimerCommand(TimerManager timer) {
+    public TimerCommand(TimerManager timer, ConfigManager configManager) {
         this.timer = timer;
+        this.configManager = configManager;
     }
 
     private long parseTimeToMillis(String input) {
@@ -64,7 +67,12 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+
+        if (!configManager.getBoolean("timer.enabled")) {
+            sender.sendMessage("§cThe timer is disabled in the config.");
+            return true;
+        }
 
         if (!sender.hasPermission("hyperclock.timer.use")) {
             sender.sendMessage("§cYou do not have permission to use this command.");
@@ -117,6 +125,19 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
 
         return true;
     }
+
+    public boolean setDefaultTime() {
+        String defaultTimeString = configManager.getString("timer.default-time");
+        long defaultTimeMillis = parseTimeToMillis(defaultTimeString);
+
+        if (defaultTimeMillis > 0) {
+            timer.set(defaultTimeMillis);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     @Override
     public List<String> onTabComplete(
