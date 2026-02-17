@@ -48,7 +48,7 @@ public class HyperClock extends JavaPlugin {
         commandManager.register("timer", timerCommand, timerCommand);
 
         if (configManager.getBoolean("updates.auto-update-check")) {
-            updateChecker = new UpdateChecker(this, "DiscordSRV/DiscordSRV");
+            updateChecker = new UpdateChecker(this, "HyperProjectsMC/HyperClock");
             updateChecker.check();
         }
 

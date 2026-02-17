@@ -4,6 +4,8 @@
 #  Config Version: 1.0.0
 # ==========================================
 
+# Currently this changes will only take effect AFTER a server restart. We are planning on adding a reload command.
+
 # General settings
 general:
   prefix: "§9§l[Hyper§d§lClock] §7| " # Remember to keep the last space to make sure there is room between your prefix and message.
@@ -31,11 +33,12 @@ stopwatch:
   auto-start: false
 
   # Broadcast settings
+  # (Broadcast is currently not available. This will be available later.)
   # (The broadcast messages can be edited inside the lang file of your choice)
-  broadcast:
-    on-start: true # NOT WORKING
-    on-stop: true # NOT WORKING
-    on-reset: false # NOT WORKING
+  #broadcast:
+  #  on-start: true # NOT WORKING
+  #  on-stop: true # NOT WORKING
+  #  on-reset: false # NOT WORKING
 
 # ==========================================
 # Timer Settings (Count Down)
@@ -54,21 +57,23 @@ timer:
   auto-start: false
 
   # Broadcast settings
+  # (Broadcast is currently not available. This will be available later.)
   # (The broadcast messages can be edited inside the lang file of your choice.)
   # (The on finish broadcast can be toggled inside the on-finish block below.)
-  broadcast:
-    on-start: true # NOT WORKING
-    on-stop: true # NOT WORKING
-    on-set: false # NOT WORKING
+  #broadcast:
+  #  on-start: true # NOT WORKING
+  #  on-stop: true # NOT WORKING
+  #  on-set: false # NOT WORKING
 
   # What will happen if the timer finishes.
+  # (on-finish is currently not available. This will be available later.)
   # (The broadcast message can be edited inside the lang file of your choice.)
-  on-finish:
-    broadcast: true # NOT WORKING
-    play-sound: true # NOT WORKING
-    sound: "ENTITY_PLAYER_LEVELUP" # NOT WORKING
-    execute-commands:
-      - "give @a apple 1" # NOT WORKING
+  #on-finish:
+  #  broadcast: true # NOT WORKING
+  #  play-sound: true # NOT WORKING
+  #  sound: "ENTITY_PLAYER_LEVELUP" # NOT WORKING
+  #  execute-commands:
+  #    - "give @a apple 1" # NOT WORKING
 
 # ==========================================
 # Storage
@@ -77,11 +82,9 @@ storage:
   # Where will the information be stored?
   # Possible values:
   # MEMORY     -> Stores data in RAM. Fast and simple, but lost after restart.
-  # FILE       -> Stores data on disk. Persistent after restart.
+  # FILE       -> NOT AVAILABLE Stores data on disk. Persistent after restart.
 
-  type: "MEMORY" # NOT WORKING
-  save-interval-seconds: 60 # NOT WORKING
-  file-name: "data.yml" # NOT WORKING
+  type: "MEMORY" # Currently only memory is available
 
 # ==========================================
 # Messages

@@ -34,6 +34,10 @@ public class UpdateChecker {
                 currentVersion = plugin.getPluginMeta().getVersion();
                 latestVersion = getString(url);
 
+                if (latestVersion.startsWith("v")) {
+                    latestVersion = latestVersion.substring(1);
+                }
+
                 if (!latestVersion.equalsIgnoreCase(currentVersion)) {
                     updateAvailable = true;
 

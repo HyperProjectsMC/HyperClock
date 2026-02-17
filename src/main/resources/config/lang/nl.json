@@ -1,16 +1,19 @@
 {
   "no-permission": "§cJe hebt geen toestemming om dit commando te gebruiken.",
   "usage": "§7Gebruik: {commandUsage}",
+  "update-available": "§eUpdate beschikbaar! §7Versie: §c{version}",
 
   "stopwatch-started": "§aStopwatch gestart.",
   "stopwatch-stopped": "§cStopwatch gestopt.",
   "stopwatch-reset": "§eStopwatch gereset.",
-  "stopwatch-status": "§7Status:\n§bStopwatch tijd: §f{time}\n§7Bezig: §f{status}",
+  "stopwatch-status": "§7Status:\n§bStopwatch tijd: §f{time}\n§7Actief: §f{status}",
   "stopwatch-disabled": "§cDe stopwatch is uitgeschakeld in de configuratie.",
 
   "timer-started": "§aTimer gestart.",
-  "timer-stopped": "§eTimer gepauzeerd.",
-  "timer-set": "§aTimer ingesteld op &f{time}",
-  "timer-disabled": "§cDe timer is uitgeschakeld in de configuratie.",
-  "invalid-time-format": "§cOngeldig tijdsformaat! Voorbeeld: 5m, 1h30m"
+  "timer-stopped": "§cTimer gestopt.",
+  "timer-set": "§eTimer ingesteld op §f{time}",
+  "timer-set-examples": "§7Voorbeelden: 30s, 5m, 1h",
+  "timer-set-invalid": "§cOngeldig tijdformaat.",
+  "timer-status": "§7Status:\n§bTimer tijd: §f{time}\n§7Actief: §f{status}\n§7Voltooid: §f{finished}",
+  "timer-disabled": "§cDe timer is uitgeschakeld in de configuratie."
 }
