@@ -6,8 +6,8 @@
 
 # General settings
 general:
-  prefix: "&8[&bHyperClock&8] "
-  language: "en"
+  prefix: "&8[&bHyperClock&8] " # NOT WORKING
+  language: "en" # NOT WORKING
 
 # Update settings
 updates:
@@ -33,35 +33,35 @@ stopwatch:
   # Broadcast settings
   # (The broadcast messages can be edited inside the lang file of your choice)
   broadcast:
-    on-start: true
-    on-stop: true
-    on-reset: false
+    on-start: true # NOT WORKING
+    on-stop: true # NOT WORKING
+    on-reset: false # NOT WORKING
 
 # ==========================================
 # Timer Settings (Count Down)
 # ==========================================
 timer:
-  enabled: true
+  enabled: true # NOT WORKING
 
   # Default time. You van manually set your time using the /timer set command.
-  default-time: "5m"
+  default-time: "5m" # NOT WORKING
 
   # Broadcast settings
   # (The broadcast messages can be edited inside the lang file of your choice.)
   # (The on finish broadcast can be toggled inside the on-finish block below.)
   broadcast:
-    on-start: true
-    on-stop: true
-    on-set: false
+    on-start: true # NOT WORKING
+    on-stop: true # NOT WORKING
+    on-set: false # NOT WORKING
 
   # What will happen if the timer finishes.
   # (The broadcast message can be edited inside the lang file of your choice.)
   on-finish:
-    broadcast: true
-    play-sound: true
-    sound: "ENTITY_PLAYER_LEVELUP"
+    broadcast: true # NOT WORKING
+    play-sound: true # NOT WORKING
+    sound: "ENTITY_PLAYER_LEVELUP" # NOT WORKING
     execute-commands:
-      - "give @a apple 1"
+      - "give @a apple 1" # NOT WORKING
 
 # ==========================================
 # Storage
@@ -72,9 +72,9 @@ storage:
   # MEMORY     -> Stores data in RAM. Fast and simple, but lost after restart.
   # FILE       -> Stores data on disk. Persistent after restart.
 
-  type: "MEMORY"
-  save-interval-seconds: 60
-  file-name: "data.yml"
+  type: "MEMORY" # NOT WORKING
+  save-interval-seconds: 60 # NOT WORKING
+  file-name: "data.yml" # NOT WORKING
 
 # ==========================================
 # Messages

@@ -26,6 +26,10 @@ public class StopwatchManager {
         running = false;
     }
 
+    public void autoStart() {
+        start();
+    }
+
     public boolean isRunning() {
         return running;
     }

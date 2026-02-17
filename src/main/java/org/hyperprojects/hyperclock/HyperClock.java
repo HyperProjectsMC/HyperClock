@@ -2,6 +2,7 @@ package org.hyperprojects.hyperclock;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.command.TimerCommand;
 import org.hyperprojects.hyperclock.listener.JoinListener;
@@ -38,7 +39,7 @@ public class HyperClock extends JavaPlugin {
 
         CommandManager commandManager = new CommandManager(this);
 
-        StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager);
+        StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager, configManager);
         TimerCommand timerCommand = new TimerCommand(timerManager);
 
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);
@@ -54,6 +55,17 @@ public class HyperClock extends JavaPlugin {
                 this
         );
 
+        // Run on full startup!
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if (configManager.getBoolean("stopwatch.enabled") && configManager.getBoolean("stopwatch.auto-start")) {
+                    stopwatchManager.autoStart();
+                    getLogger().info("The stopwatch has started because auto start was enabled.");
+                }
+            }
+        }.runTask(this);
+
         // PlaceholderAPI hook
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             new HyperClockExpansion(stopwatchManager, timerManager).register();
@@ -65,12 +77,12 @@ public class HyperClock extends JavaPlugin {
         getLogger().info("HyperClock enabled successfully");
     }
 
-    public static HyperClock getInstance() {
-        return instance;
-    }
-
     @Override
     public void onDisable() {
         getLogger().info("HyperClock disabled successfully");
+    }
+
+    public static HyperClock getInstance() {
+        return instance;
     }
 }

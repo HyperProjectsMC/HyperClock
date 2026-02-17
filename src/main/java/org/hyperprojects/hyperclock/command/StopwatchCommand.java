@@ -1,6 +1,7 @@
 package org.hyperprojects.hyperclock.command;
 
 import org.bukkit.command.TabCompleter;
+import org.hyperprojects.hyperclock.manager.ConfigManager;
 import org.hyperprojects.hyperclock.manager.StopwatchManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,13 +15,20 @@ import java.util.stream.Stream;
 public class StopwatchCommand implements CommandExecutor, TabCompleter {
 
     private final StopwatchManager stopwatch;
+    private final ConfigManager configManager;
 
-    public StopwatchCommand(StopwatchManager stopwatch) {
+    public StopwatchCommand(StopwatchManager stopwatch, ConfigManager configManager) {
         this.stopwatch = stopwatch;
+        this.configManager = configManager;
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+    public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
+
+        if (!configManager.getBoolean("stopwatch.enabled")) {
+            sender.sendMessage("§cThe stopwatch is disabled in the config.");
+            return true;
+        }
 
         if (!sender.hasPermission("hyperclock.stopwatch.use")) {
             sender.sendMessage("§cYou do not have permission to use this command.");
