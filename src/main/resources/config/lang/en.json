@@ -10,7 +10,7 @@
 
   "timer-started": "§aTimer started.",
   "timer-stopped": "§cTimer stopped.",
-  "timer-set": "§eTimer set to &f{time}",
+  "timer-set": "§eTimer set to §f{time}",
   "timer-set-examples": "§7Examples: 30s, 5m, 1h",
   "timer-set-invalid": "§cInvalid time format.",
   "timer-status": "§7Status:\n§bTimer time: §f{time}\n§7Running: §f{status}\n§7Finished: §f{finished}",

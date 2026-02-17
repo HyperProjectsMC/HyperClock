@@ -171,7 +171,7 @@ public class TimerCommand implements CommandExecutor, TabCompleter {
                 timer.set(millis);
                 String messageSet = langManager.getString("timer-set");
                 if (messageSet == null || messageSet.isEmpty()) {
-                    messageSet = "§eTimer set to &f{time}";
+                    messageSet = "§eTimer set to §f{time}";
                 }
 
                 String time = timer.getFormattedTime();
