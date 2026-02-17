@@ -2,6 +2,7 @@ package org.hyperprojects.hyperclock.command;
 
 import org.bukkit.command.TabCompleter;
 import org.hyperprojects.hyperclock.manager.ConfigManager;
+import org.hyperprojects.hyperclock.manager.LangManager;
 import org.hyperprojects.hyperclock.manager.StopwatchManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,53 +17,112 @@ public class StopwatchCommand implements CommandExecutor, TabCompleter {
 
     private final StopwatchManager stopwatch;
     private final ConfigManager configManager;
+    private final LangManager langManager;
 
-    public StopwatchCommand(StopwatchManager stopwatch, ConfigManager configManager) {
+    public StopwatchCommand(StopwatchManager stopwatch, ConfigManager configManager, LangManager langManager) {
         this.stopwatch = stopwatch;
         this.configManager = configManager;
+        this.langManager = langManager;
     }
 
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
 
         if (!configManager.getBoolean("stopwatch.enabled")) {
-            sender.sendMessage("§cThe stopwatch is disabled in the config.");
+            String messageDisabled = langManager.getString("stopwatch-disabled");
+            if (messageDisabled == null || messageDisabled.isEmpty()) {
+                messageDisabled = "§cThe stopwatch is disabled in the config.";
+            }
+
+            sender.sendMessage(messageDisabled);
+
             return true;
         }
 
         if (!sender.hasPermission("hyperclock.stopwatch.use")) {
-            sender.sendMessage("§cYou do not have permission to use this command.");
+            String messagePerm = langManager.getString("no-permission");
+            if (messagePerm == null || messagePerm.isEmpty()) {
+                messagePerm = "§cYou do not have permission to use this command.";
+            }
+
+            sender.sendMessage(messagePerm);
             return true;
         }
 
         if (args.length == 0) {
-            sender.sendMessage("§7Usage: /stopwatch <start|stop|reset|status>");
+            String messageUsage = langManager.getString("usage");
+            if (messageUsage == null || messageUsage.isEmpty()) {
+                messageUsage = "§7Usage: {commandUsage}";
+            }
+
+            String commandUsage = "/stopwatch <start|stop|reset|status>";
+
+            messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
+
+            sender.sendMessage(messageUsage);
             return true;
         }
 
         switch (args[0].toLowerCase()) {
             case "start":
                 stopwatch.start();
-                sender.sendMessage("§aStopwatch started.");
+
+                String messageStart = langManager.getString("stopwatch-started");
+                if (messageStart == null || messageStart.isEmpty()) {
+                    messageStart = "§aStopwatch started.";
+                }
+
+                sender.sendMessage(messageStart);
                 break;
 
             case "stop":
                 stopwatch.stop();
-                sender.sendMessage("§cStopwatch stopped.");
+
+                String messageStop = langManager.getString("stopwatch-stopped");
+                if (messageStop == null || messageStop.isEmpty()) {
+                    messageStop = "§eStopwatch stopped.";
+                }
+
+                sender.sendMessage(messageStop);
                 break;
 
             case "reset":
                 stopwatch.reset();
-                sender.sendMessage("§eStopwatch reset.");
+
+                String messageReset = langManager.getString("stopwatch-reset");
+                if (messageReset == null || messageReset.isEmpty()) {
+                    messageReset = "§eStopwatch reset.";
+                }
+
+                sender.sendMessage(messageReset);
                 break;
 
             case "status":
-                sender.sendMessage("§bStopwatch time: §f" + stopwatch.getFormattedTime());
-                sender.sendMessage("§7Running: " + stopwatch.isRunning());
+                String messageStatus = langManager.getString("stopwatch-status");
+                if (messageStatus == null || messageStatus.isEmpty()) {
+                    messageStatus = "§bStopwatch time: §f{time}\n§7Running: {status}";
+                }
+
+                String time = stopwatch.getFormattedTime();
+                String status = String.valueOf(stopwatch.isRunning());
+
+                messageStatus = messageStatus.replace("{time}", time);
+                messageStatus = messageStatus.replace("{status}", status);
+
+                sender.sendMessage(messageStatus);
                 break;
 
             default:
-                sender.sendMessage("§7Usage: /stopwatch <start|stop|reset|status>");
+                String messageUsage = langManager.getString("usage");
+                if (messageUsage == null || messageUsage.isEmpty()) {
+                    messageUsage = "§7Usage: {commandUsage}";
+                }
+
+                String commandUsage = "/stopwatch <start|stop|reset|status>";
+
+                messageUsage = messageUsage.replace("{commandUsage}", commandUsage);
+
+                sender.sendMessage(messageUsage);
                 break;
         }
 

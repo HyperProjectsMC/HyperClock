@@ -96,12 +96,6 @@ public class ConfigManager {
         }
     }
 
-    @SuppressWarnings("unused")
-    public void set(String path, Object value) {
-        config.set(path, value);
-        save();
-    }
-
     public boolean getBoolean(String path) {
         Object value = config.get(path);
         if (value == null) {

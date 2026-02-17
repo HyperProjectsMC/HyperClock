@@ -6,10 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.hyperprojects.hyperclock.command.StopwatchCommand;
 import org.hyperprojects.hyperclock.command.TimerCommand;
 import org.hyperprojects.hyperclock.listener.JoinListener;
-import org.hyperprojects.hyperclock.manager.CommandManager;
-import org.hyperprojects.hyperclock.manager.ConfigManager;
-import org.hyperprojects.hyperclock.manager.StopwatchManager;
-import org.hyperprojects.hyperclock.manager.TimerManager;
+import org.hyperprojects.hyperclock.manager.*;
 import org.hyperprojects.hyperclock.placeholder.HyperClockExpansion;
 import org.hyperprojects.hyperclock.util.UpdateChecker;
 
@@ -26,6 +23,8 @@ public class HyperClock extends JavaPlugin {
     private UpdateChecker updateChecker;
     @SuppressWarnings("FieldCanBeLocal")
     private ConfigManager configManager;
+    @SuppressWarnings("FieldCanBeLocal")
+    private LangManager langManager;
 
     @Override
     public void onEnable() {
@@ -37,9 +36,12 @@ public class HyperClock extends JavaPlugin {
         configManager = new ConfigManager(this);
         configManager.load();
 
+        langManager = new LangManager(this, configManager);
+        langManager.load();
+
         CommandManager commandManager = new CommandManager(this);
 
-        StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager, configManager);
+        StopwatchCommand stopwatchCommand = new StopwatchCommand(stopwatchManager, configManager, langManager);
         TimerCommand timerCommand = new TimerCommand(timerManager, configManager);
 
         commandManager.register("stopwatch", stopwatchCommand, stopwatchCommand);

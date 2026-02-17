@@ -6,8 +6,8 @@
 
 # General settings
 general:
-  prefix: "&8[&bHyperClock&8] " # NOT WORKING
-  language: "en" # NOT WORKING
+  prefix: "§8[§bHyperClock§8] " # Remember to keep the last space to make sure there is room between your prefix and message.
+  language: "en"
 
 # Update settings
 updates:
@@ -88,14 +88,3 @@ storage:
 # ==========================================.
 
 # You can edit the messages in the files inside the lang folder, and you must set the correct language at the top of the config file.
-messages:
-  no-permission: "&cYou do not have permission to use this command."
-  timer-not-running: "&cThe timer is not running."
-  stopwatch-not-running: "&cThe stopwatch is not running."
-  invalid-time-format: "&cInvalid time format! Example: 5m, 1h30m"
-  timer-set: "&aTimer set to &f%hyperclock_timer_time%"
-  timer-started: "&aTimer started!"
-  timer-paused: "&eTimer paused."
-  stopwatch-started: "&aStopwatch started!"
-  stopwatch-stopped: "&eStopwatch stopped."
-  stopwatch-reset: "&cStopwatch reset."
