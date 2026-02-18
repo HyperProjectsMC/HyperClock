@@ -65,7 +65,7 @@ The timer counts down from a selected time.
 | Command             | Description               | Permission             |
 |---------------------|---------------------------|------------------------|
 | `/timer start`      | Starts the timer          | `hyperclock.timer.use` |
-| `/timer pause`      | Stops the timer           | `hyperclock.timer.use` |
+| `/timer stop`       | Stops the timer           | `hyperclock.timer.use` |
 | `/timer set <time>` | Set the timer (5m, 1h30m) | `hyperclock.timer.use` |
 | `/timer status`     | Shows the current status  | `hyperclock.timer.use` |
 
