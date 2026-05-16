@@ -6,7 +6,7 @@
 
     <groupId>org.hyperprojects</groupId>
     <artifactId>hyperclock</artifactId>
-    <version>1.1.0-alpha.1</version>
+    <version>1.1.0-alpha.2</version>
     <packaging>jar</packaging>
 
     <name>hyperclock</name>
@@ -88,7 +88,7 @@
         <dependency>
             <groupId>io.papermc.paper</groupId>
             <artifactId>paper-api</artifactId>
-            <version>26.1.1.build.20-alpha</version>
+            <version>26.1.2.build.63-stable</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
